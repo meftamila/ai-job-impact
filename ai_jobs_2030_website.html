@@ -1,0 +1,346 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --c1:#1a1a2e;--c2:#16213e;--c3:#0f3460;
+    --acc:#e94560;--acc2:#f5a623;--acc3:#00d4aa;
+    --txt:#f0f0f0;--txt2:#a0a8b8;--card:#1e2a45;
+    --border:rgba(255,255,255,0.08);
+  }
+  body{font-family:'Outfit',sans-serif;background:var(--c1);color:var(--txt);line-height:1.6;font-size:16px}
+
+  nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:rgba(26,26,46,0.92);backdrop-filter:blur(12px);z-index:100}
+  .logo{font-family:'DM Serif Display',serif;font-size:1.3rem;letter-spacing:-0.02em}
+  .logo span{color:var(--acc)}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{color:var(--txt2);text-decoration:none;font-size:0.875rem;font-weight:400;transition:color 0.2s}
+  .nav-links a:hover{color:var(--txt)}
+  .nav-cta{background:var(--acc);color:#fff;padding:0.5rem 1.25rem;border-radius:6px;font-size:0.875rem;font-weight:500;cursor:pointer;border:none;transition:opacity 0.2s}
+  .nav-cta:hover{opacity:0.85}
+
+  .hero{padding:5rem 3rem 4rem;max-width:900px}
+  .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(233,69,96,0.1);border:0.5px solid rgba(233,69,96,0.3);border-radius:100px;padding:0.3rem 1rem;font-size:0.8rem;color:var(--acc);margin-bottom:1.5rem;font-family:'DM Mono',monospace}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--acc);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+  h1{font-family:'DM Serif Display',serif;font-size:clamp(2.4rem,5vw,4rem);line-height:1.1;letter-spacing:-0.03em;margin-bottom:1.25rem}
+  h1 em{font-style:italic;color:var(--acc)}
+  .hero-sub{color:var(--txt2);font-size:1.05rem;max-width:580px;font-weight:300;margin-bottom:2rem}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn-primary{background:var(--acc);color:#fff;padding:0.75rem 1.75rem;border-radius:8px;font-weight:500;cursor:pointer;border:none;font-size:0.95rem;transition:transform 0.15s,opacity 0.15s}
+  .btn-primary:hover{transform:translateY(-1px);opacity:0.9}
+  .btn-secondary{background:transparent;color:var(--txt);padding:0.75rem 1.75rem;border-radius:8px;border:0.5px solid var(--border);font-size:0.95rem;cursor:pointer;transition:border-color 0.2s,background 0.2s}
+  .btn-secondary:hover{border-color:rgba(255,255,255,0.25);background:rgba(255,255,255,0.04)}
+
+  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border)}
+  .stat{padding:1.5rem 3rem;border-right:0.5px solid var(--border)}
+  .stat:last-child{border-right:none}
+  .stat-num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--acc2)}
+  .stat-label{font-size:0.8rem;color:var(--txt2);font-weight:400;margin-top:2px}
+
+  section{padding:4rem 3rem}
+  section h2{font-family:'DM Serif Display',serif;font-size:1.9rem;margin-bottom:0.5rem;letter-spacing:-0.02em}
+  .section-sub{color:var(--txt2);font-size:0.9rem;margin-bottom:2.5rem;font-weight:300}
+
+  .pipeline{display:flex;align-items:stretch;gap:0;overflow-x:auto;padding-bottom:0.5rem}
+  .step{flex:1;min-width:160px;background:var(--card);border:0.5px solid var(--border);padding:1.25rem;position:relative}
+  .step:not(:last-child)::after{content:'→';position:absolute;right:-14px;top:50%;transform:translateY(-50%);color:var(--txt2);font-size:1.1rem;z-index:2}
+  .step:first-child{border-radius:10px 0 0 10px}
+  .step:last-child{border-radius:0 10px 10px 0}
+  .step-num{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--acc);margin-bottom:0.5rem}
+  .step-title{font-size:0.875rem;font-weight:500;margin-bottom:0.4rem}
+  .step-desc{font-size:0.78rem;color:var(--txt2);line-height:1.5}
+  .step.accent{background:rgba(233,69,96,0.08);border-color:rgba(233,69,96,0.25)}
+  .step.accent2{background:rgba(0,212,170,0.07);border-color:rgba(0,212,170,0.2)}
+
+  .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .feat-card{background:var(--card);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color 0.2s,transform 0.2s;cursor:default}
+  .feat-card:hover{border-color:rgba(255,255,255,0.18);transform:translateY(-2px)}
+  .feat-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:16px}
+  .icon-red{background:rgba(233,69,96,0.15)}
+  .icon-green{background:rgba(0,212,170,0.12)}
+  .icon-amber{background:rgba(245,166,35,0.12)}
+  .feat-card h3{font-size:0.95rem;font-weight:500;margin-bottom:0.5rem}
+  .feat-card p{font-size:0.82rem;color:var(--txt2);line-height:1.6}
+
+  .results-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+  .model-card{background:var(--card);border:0.5px solid var(--border);border-radius:12px;overflow:hidden}
+  .model-header{padding:1rem 1.25rem;border-bottom:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+  .model-header h3{font-size:0.95rem;font-weight:500}
+  .badge{font-size:0.72rem;padding:0.25rem 0.6rem;border-radius:100px;font-family:'DM Mono',monospace;font-weight:500}
+  .badge-green{background:rgba(0,212,170,0.15);color:var(--acc3)}
+  .badge-amber{background:rgba(245,166,35,0.15);color:var(--acc2)}
+  .model-body{padding:1.25rem}
+  .metric-row{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:0.5px solid var(--border)}
+  .metric-row:last-child{border-bottom:none}
+  .metric-name{font-size:0.82rem;color:var(--txt2)}
+  .metric-val{font-family:'DM Mono',monospace;font-size:0.85rem;font-weight:500}
+  .bar-row{margin-top:0.75rem}
+  .bar-label{display:flex;justify-content:space-between;font-size:0.78rem;color:var(--txt2);margin-bottom:4px}
+  .bar-track{height:6px;background:rgba(255,255,255,0.08);border-radius:100px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:100px;transition:width 1.2s ease}
+  .fill-red{background:var(--acc)}
+  .fill-green{background:var(--acc3)}
+  .fill-amber{background:var(--acc2)}
+
+  .tech-row{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1rem}
+  .tag{font-family:'DM Mono',monospace;font-size:0.75rem;padding:0.3rem 0.75rem;border-radius:6px;border:0.5px solid var(--border);color:var(--txt2)}
+  .tag.hl{border-color:rgba(233,69,96,0.3);color:var(--acc);background:rgba(233,69,96,0.06)}
+
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+  .highlight-box{background:linear-gradient(135deg,rgba(233,69,96,0.08),rgba(0,212,170,0.06));border:0.5px solid rgba(233,69,96,0.2);border-radius:12px;padding:1.5rem}
+  .highlight-box h3{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:0.75rem}
+  .check-list{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
+  .check-list li{font-size:0.875rem;color:var(--txt2);display:flex;gap:10px;align-items:flex-start}
+  .check-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--acc3);margin-top:7px;flex-shrink:0}
+
+  footer{border-top:0.5px solid var(--border);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center}
+  footer p{font-size:0.82rem;color:var(--txt2)}
+  .footer-logo{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--txt2)}
+  .footer-logo span{color:var(--acc)}
+</style>
+
+<nav>
+  <div class="logo">AI<span>×</span>Jobs 2030</div>
+  <ul class="nav-links">
+    <li><a href="#pipeline">Pipeline</a></li>
+    <li><a href="#model">Model</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#about">About</a></li>
+  </ul>
+  <button class="nav-cta" onclick="alert('Source code link coming soon!')">View Source</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag"><div class="dot"></div>Machine Learning Research · 2025</div>
+  <h1>Predicting <em>AI Risk</em><br>in the Job Market</h1>
+  <p class="hero-sub">An XGBoost classification model that forecasts automation vulnerability by 2030 across job roles, experience levels, and skill profiles.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('results').scrollIntoView({behavior:'smooth'})">Explore Results</button>
+    <button class="btn-secondary" onclick="document.getElementById('pipeline').scrollIntoView({behavior:'smooth'})">How It Works</button>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Risk categories predicted</div></div>
+  <div class="stat"><div class="stat-num">2</div><div class="stat-label">XGBoost classifiers</div></div>
+  <div class="stat"><div class="stat-num">10</div><div class="stat-label">Skill features per worker</div></div>
+  <div class="stat"><div class="stat-num">80/20</div><div class="stat-label">Train / test split</div></div>
+</div>
+
+<section id="pipeline">
+  <h2>ML Pipeline</h2>
+  <p class="section-sub">End-to-end data processing and model training workflow</p>
+  <div class="pipeline">
+    <div class="step">
+      <div class="step-num">01 / DATA</div>
+      <div class="step-title">Load & Inspect</div>
+      <div class="step-desc">Read CSV with pandas, display head and schema info</div>
+    </div>
+    <div class="step">
+      <div class="step-num">02 / FEATURE</div>
+      <div class="step-title">Engineer Groups</div>
+      <div class="step-desc">Bin years_experience into Junior / Mid / Senior / Out-of-range</div>
+    </div>
+    <div class="step accent">
+      <div class="step-num">03 / ENCODE</div>
+      <div class="step-title">One-Hot Encode</div>
+      <div class="step-desc">Transform Job_Title, Education, Experience group, Risk_Category</div>
+    </div>
+    <div class="step accent">
+      <div class="step-num">04 / LEAKAGE</div>
+      <div class="step-title">Remove Data Leak</div>
+      <div class="step-desc">Drop Automation_Probability_2030 — deterministically linked to target</div>
+    </div>
+    <div class="step">
+      <div class="step-num">05 / SPLIT</div>
+      <div class="step-title">Train / Test</div>
+      <div class="step-desc">Stratified 80/20 split per target class</div>
+    </div>
+    <div class="step">
+      <div class="step-num">06 / SCALE</div>
+      <div class="step-title">Standardize</div>
+      <div class="step-desc">StandardScaler on salary, AI index, skill scores, experience</div>
+    </div>
+    <div class="step accent2">
+      <div class="step-num">07 / MODEL</div>
+      <div class="step-title">Train XGBoost</div>
+      <div class="step-desc">Two binary classifiers: Low Risk & Medium Risk separately</div>
+    </div>
+    <div class="step accent2">
+      <div class="step-num">08 / EVAL</div>
+      <div class="step-title">Evaluate</div>
+      <div class="step-desc">Accuracy, precision, recall, F1 per class</div>
+    </div>
+  </div>
+</section>
+
+<section id="model">
+  <h2>Feature Engineering</h2>
+  <p class="section-sub">Key design decisions in the preprocessing stage</p>
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-icon icon-amber">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" rx="1" fill="#f5a623"/><rect x="1" y="7" width="10" height="2" rx="1" fill="#f5a623"/><rect x="1" y="11" width="12" height="2" rx="1" fill="#f5a623"/></svg>
+      </div>
+      <h3>Experience Level Grouping</h3>
+      <p>Years of experience binned into Junior (1–10), Mid-level (11–20), Senior (21–30) for better categorical signal and model interpretability.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon icon-red">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#e94560" stroke-width="1.5"/><line x1="8" y1="4" x2="8" y2="8" stroke="#e94560" stroke-width="1.5"/><line x1="8" y1="8" x2="11" y2="10" stroke="#e94560" stroke-width="1.5"/></svg>
+      </div>
+      <h3>Data Leakage Prevention</h3>
+      <p>Automation_Probability_2030 excluded from features — it directly encodes the target, which would produce misleadingly high accuracy scores.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon icon-green">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 12 L5 8 L8 10 L11 5 L14 7" stroke="#00d4aa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Dual Binary Classification</h3>
+      <p>Two separate XGBoost models predict Risk_Category_Low and Risk_Category_Medium independently, enabling nuanced per-class analysis.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon icon-amber">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" fill="#f5a623"/><rect x="9" y="2" width="5" height="5" rx="1" fill="#f5a623"/><rect x="2" y="9" width="5" height="5" rx="1" fill="#f5a623"/><rect x="9" y="9" width="5" height="5" rx="1" fill="#f5a623"/></svg>
+      </div>
+      <h3>One-Hot Encoding</h3>
+      <p>Categorical variables (Job_Title, Education_Level, Experience group, Risk_Category) encoded with get_dummies, drop_first=False to retain full category info.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon icon-green">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><line x1="8" y1="2" x2="8" y2="14" stroke="#00d4aa" stroke-width="1.5"/><line x1="3" y1="6" x2="13" y2="6" stroke="#00d4aa" stroke-width="1.5"/><line x1="4" y1="10" x2="12" y2="10" stroke="#00d4aa" stroke-width="0.8" stroke-dasharray="2 2"/></svg>
+      </div>
+      <h3>StandardScaler</h3>
+      <p>Continuous features (salary, AI exposure index, 10 skill scores, years experience) normalized to zero mean and unit variance per model.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon icon-red">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="7" width="12" height="2" rx="1" fill="#e94560"/><rect x="7" y="2" width="2" height="12" rx="1" fill="#e94560"/></svg>
+      </div>
+      <h3>Stratified Splitting</h3>
+      <p>Train-test split uses stratify parameter per target variable to maintain class proportions in both training and test sets (random_state=42).</p>
+    </div>
+  </div>
+  <div class="tech-row">
+    <span class="tag hl">XGBoost</span>
+    <span class="tag hl">pandas</span>
+    <span class="tag hl">scikit-learn</span>
+    <span class="tag">StandardScaler</span>
+    <span class="tag">train_test_split</span>
+    <span class="tag">classification_report</span>
+    <span class="tag">get_dummies</span>
+    <span class="tag">numpy</span>
+  </div>
+</section>
+
+<section id="results">
+  <h2>Model Results</h2>
+  <p class="section-sub">XGBoost classifier evaluation on held-out test set</p>
+  <div class="results-grid">
+    <div class="model-card">
+      <div class="model-header">
+        <h3>Risk_Category_Low classifier</h3>
+        <span class="badge badge-green">XGBoost</span>
+      </div>
+      <div class="model-body">
+        <div class="metric-row"><span class="metric-name">Model type</span><span class="metric-val" style="color:var(--acc3)">XGBClassifier</span></div>
+        <div class="metric-row"><span class="metric-name">Eval metric</span><span class="metric-val">logloss</span></div>
+        <div class="metric-row"><span class="metric-name">Random state</span><span class="metric-val">42</span></div>
+        <div class="metric-row"><span class="metric-name">Test split</span><span class="metric-val">20%</span></div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Estimated Accuracy</span><span>~92%</span></div>
+          <div class="bar-track"><div class="bar-fill fill-green" style="width:92%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Precision (class 0)</span><span>High</span></div>
+          <div class="bar-track"><div class="bar-fill fill-green" style="width:89%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Recall (class 1)</span><span>High</span></div>
+          <div class="bar-track"><div class="bar-fill fill-amber" style="width:85%"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="model-card">
+      <div class="model-header">
+        <h3>Risk_Category_Medium classifier</h3>
+        <span class="badge badge-amber">XGBoost</span>
+      </div>
+      <div class="model-body">
+        <div class="metric-row"><span class="metric-name">Model type</span><span class="metric-val" style="color:var(--acc2)">XGBClassifier</span></div>
+        <div class="metric-row"><span class="metric-name">Eval metric</span><span class="metric-val">logloss</span></div>
+        <div class="metric-row"><span class="metric-name">Random state</span><span class="metric-val">42</span></div>
+        <div class="metric-row"><span class="metric-name">Test split</span><span class="metric-val">20%</span></div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Estimated Accuracy</span><span>~89%</span></div>
+          <div class="bar-track"><div class="bar-fill fill-amber" style="width:89%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Precision (class 0)</span><span>Moderate-High</span></div>
+          <div class="bar-track"><div class="bar-fill fill-amber" style="width:83%"></div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label"><span>Recall (class 1)</span><span>Moderate-High</span></div>
+          <div class="bar-track"><div class="bar-fill fill-red" style="width:80%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:0.78rem;color:var(--txt2);margin-top:1rem">* Accuracy values are illustrative — run the notebook to see exact figures from your dataset.</p>
+</section>
+
+<section id="about">
+  <div class="two-col">
+    <div>
+      <h2>About This Project</h2>
+      <p class="section-sub">Workforce automation risk forecasting with ML</p>
+      <div class="highlight-box">
+        <h3>What does this model predict?</h3>
+        <p style="font-size:0.875rem;color:var(--txt2);margin-bottom:1rem">Given a worker's job title, education, experience, salary, and skill profile — the model classifies whether they fall into a Low or Medium automation risk category by 2030.</p>
+        <ul class="check-list">
+          <li>Uses AI Exposure Index and Tech Growth Factor as key signals</li>
+          <li>10 skill dimensions capture breadth of worker capability</li>
+          <li>Separate models per risk class avoids class imbalance issues</li>
+          <li>Leakage-free: automation probability excluded from features</li>
+          <li>Stratified splits ensure representative evaluation</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <h2>Dataset Columns</h2>
+      <p class="section-sub">Key input features used in the model</p>
+      <div style="display:flex;flex-direction:column;gap:0.4rem">
+        <div style="display:flex;justify-content:space-between;padding:0.6rem 0.8rem;background:var(--card);border-radius:6px;border:0.5px solid var(--border);font-size:0.8rem">
+          <span style="font-family:'DM Mono',monospace;color:var(--acc3)">Job_Title</span><span style="color:var(--txt2)">categorical</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:0.6rem 0.8rem;background:var(--card);border-radius:6px;border:0.5px solid var(--border);font-size:0.8rem">
+          <span style="font-family:'DM Mono',monospace;color:var(--acc3)">Education_Level</span><span style="color:var(--txt2)">categorical</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:0.6rem 0.8rem;background:var(--card);border-radius:6px;border:0.5px solid var(--border);font-size:0.8rem">
+          <span style="font-family:'DM Mono',monospace;color:var(--acc3)">Years_Experience</span><span style="color:var(--txt2)">float → grouped</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:0.6rem 0.8rem;background:var(--card);border-radius:6px;border:0.5px solid var(--border);font-size:0.8rem">
+          <span style="font-family:'DM Mono',monospace;color:var(--acc3)">Average_Salary</span><span style="color:var(--txt2)">float · scaled</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:0.6rem 0.8rem;background:var(--card);border-radius:6px;border:0.5px solid var(--border);font-size:0.8rem">
+          <span style="font-family:'DM Mono',monospace;color:var(--acc3)">AI_Exposure_Index</span><span style="color:var(--txt2)">float · scaled</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:0.6rem 0.8rem;background:var(--card);border-radius:6px;border:0.5px solid var(--border);font-size:0.8rem">
+          <span style="font-family:'DM Mono',monospace;color:var(--acc3)">Tech_Growth_Factor</span><span style="color:var(--txt2)">float · scaled</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:0.6rem 0.8rem;background:var(--card);border-radius:6px;border:0.5px solid var(--border);font-size:0.8rem">
+          <span style="font-family:'DM Mono',monospace;color:var(--acc)">Skill_1 … Skill_10</span><span style="color:var(--txt2)">10 × float · scaled</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;padding:0.6rem 0.8rem;background:rgba(233,69,96,0.07);border-radius:6px;border:0.5px solid rgba(233,69,96,0.2);font-size:0.8rem">
+          <span style="font-family:'DM Mono',monospace;color:var(--acc)">Risk_Category</span><span style="color:var(--acc);font-size:0.72rem">target (one-hot)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built with pandas · scikit-learn · XGBoost · matplotlib · seaborn</p>
+  <div class="footer-logo">AI<span>×</span>Jobs 2030</div>
+</footer>
