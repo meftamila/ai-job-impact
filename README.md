@@ -6,6 +6,8 @@ A comprehensive analysis and interactive dashboard exploring the projected impac
 
 This project provides data-driven insights into how AI is expected to influence different job markets and employment sectors through 2030. It combines statistical analysis, predictive modeling, and interactive visualization to help stakeholders understand AI-related workforce trends.
 
+![AI Impact on Jobs 2030 Dashboard](https://github.com/meftamila/ai-job-impact/blob/main/AI_Impact_on_Jobs_2030.xlsx)
+
 ## 📁 Repository Contents
 
 - **`AI_Impact_on_Jobs_2030.xlsx`** - Excel dashboard with interactive visualizations and data summaries of job impact projections
@@ -33,3 +35,4 @@ This project provides data-driven insights into how AI is expected to influence 
 ```bash
 git clone https://github.com/meftamila/ai-job-impact.git
 cd ai-job-impact
+```
