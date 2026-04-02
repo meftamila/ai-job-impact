@@ -47,7 +47,7 @@ Contributions and feedback are welcome. Please feel free to submit issues or pul
 
 ## License
 
-[MIT]
+[MIT](https://github.com/meftamila/ai-job-impact/blob/main/LICENSE)
 
 ## Contact
 
