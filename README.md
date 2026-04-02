@@ -39,7 +39,7 @@ Further detailed insights, sector-specific analysis, and actionable recommendati
 
 ## Data Sources
 
-- [https://www.kaggle.com/datasets/khushikyad001/ai-impact-on-jobs-2030]
+- [https://www.kaggle.com/datasets/khushikyad001/ai-impact-on-jobs-2030](https://www.kaggle.com/datasets/khushikyad001/ai-impact-on-jobs-2030])
 
 ## Contributing
 
