@@ -39,8 +39,7 @@ Further detailed insights, sector-specific analysis, and actionable recommendati
 
 ## Data Sources
 
-- [Provide specific data source references here]
-- [Add additional sources as applicable]
+- [https://www.kaggle.com/datasets/khushikyad001/ai-impact-on-jobs-2030]
 
 ## Contributing
 
@@ -48,7 +47,7 @@ Contributions and feedback are welcome. Please feel free to submit issues or pul
 
 ## License
 
-[Specify your license here, e.g., MIT, Apache 2.0, etc.]
+[MIT]
 
 ## Contact
 
